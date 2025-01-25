@@ -6,6 +6,7 @@ using Yuri;
 
 public class Obstacle : MonoBehaviour
 {
+
    public List<TrackModifier> trackModifier;
    public float speed;
    private void Update()
@@ -17,7 +18,7 @@ public class Obstacle : MonoBehaviour
    {
       transform.position += Vector3.left * speed * Time.deltaTime;
    }
-
+   
    private void OnTriggerEnter(Collider other)
    {
       if (other.tag == "Bubble")
