@@ -42,11 +42,17 @@ public class TimeManager : MonoBehaviour
         {
             _timer = 0;
             OnTimeExpired.Invoke();
+            gameObject.SetActive(false);
         }
     }
 
     public float GetTime()
     {
         return _timer;
+    }
+
+    public void EndGameForNow()
+    {
+        GameManagerMauro.Instance.NextPlayer();
     }
 }
