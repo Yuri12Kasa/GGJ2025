@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -23,7 +22,7 @@ public class SpawnManager : MonoBehaviour
     }
     private void Update()
     {
-        if (spawnStart > 5 && spawnEnd<= 20 )//TimeHendler
+        if (spawnStart > TimeManager.Instance.SceneTime && spawnEnd<= TimeManager.Instance.SceneTime )//TimeHendler
         {
             Spawn();
         }
