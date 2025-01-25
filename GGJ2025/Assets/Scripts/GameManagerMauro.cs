@@ -1,10 +1,15 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Yuri;
 
 public class GameManagerMauro : MonoBehaviour
 {
     public static GameManagerMauro Instance;
     
     public float mainSceneTime = 20f;
+
+    public Track track;
     
     //Sentences
     [SerializeField] SentencesPool[] sentencesPool;
@@ -62,5 +67,10 @@ public class GameManagerMauro : MonoBehaviour
     public void NextPlayer()
     {
         _currentPlayer++;
+    }
+
+    public void AddTrackModifier(List<TrackModifier> modifiers)
+    {
+        track.trackModifiers.AddRange(modifiers);
     }
 }
