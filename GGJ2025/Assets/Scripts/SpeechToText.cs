@@ -1,10 +1,13 @@
+using System;
 using System.IO;
 using HuggingFace.API;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SpeechToText : MonoBehaviour
-{
+{   
     public TextMeshProUGUI text;
     [SerializeField] private int sampleRate = 44100;
     [SerializeField] private int lengthSec = 3599;
@@ -24,6 +27,7 @@ public class SpeechToText : MonoBehaviour
         playersSpeech = new string[2];
         _firstRecord = true;
         _audioSource = GetComponent<AudioSource>();
+       
     }
 
     public void StartRecording()
@@ -43,6 +47,8 @@ public class SpeechToText : MonoBehaviour
             else
             {
                 playersSpeech[1] = response;
+               
+               
             }
         }, error => {
             text.color = Color.red;
@@ -89,4 +95,5 @@ public class SpeechToText : MonoBehaviour
             return memoryStream.ToArray();
         }
     }
+  
 }
