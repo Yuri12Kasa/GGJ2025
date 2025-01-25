@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -54,6 +52,9 @@ namespace Yuri
             {
                 if (index < currentTrack.trackModifiers.Count && _timer > currentTrack.trackModifiers[index].time)
                 {
+                    float newPitch = currentTrack.trackModifiers[index].pitch;
+                    masterAudioSource.outputAudioMixerGroup.audioMixer.SetFloat("Pitch",
+                        newPitch); 
                     trackModifierAudioSource.PlayOneShot(currentTrack.trackModifiers[index].clip);
                     index++;
                 }
@@ -62,26 +63,4 @@ namespace Yuri
         }
         
     }
-    
-
-    [Serializable]
-    public class Track
-    {
-        public AudioClip clip;
-        public List<TrackModifier> trackModifiers;
-
-        public void SortList()
-        {
-            trackModifiers.Sort((x, y) => x.time.CompareTo(y.time));
-        }
-    }
-
-    [Serializable]
-    public class TrackModifier
-    {
-        public float time;
-        public float pitch = 1;
-        public AudioClip clip;
-    }
-        
 }
