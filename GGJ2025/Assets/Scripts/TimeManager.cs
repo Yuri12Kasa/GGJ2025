@@ -42,6 +42,7 @@ public class TimeManager : MonoBehaviour
         {
             _timer = 0;
             OnTimeExpired.Invoke();
+            EndGameForNow();
             gameObject.SetActive(false);
         }
     }
@@ -51,7 +52,7 @@ public class TimeManager : MonoBehaviour
         return _timer;
     }
 
-    public void EndGameForNow()
+    private void EndGameForNow()
     {
         GameManagerMauro.Instance.NextPlayer();
     }
