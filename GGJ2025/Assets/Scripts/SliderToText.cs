@@ -20,6 +20,6 @@ public class SliderToText : MonoBehaviour
 
     public void SetPlayersNumber()
     {
-        GameManagerMauro.Instance.playersNumber = (int)_playerSelector.value;
+        GameManagerMauro.Instance.SetPlayer((int)_playerSelector.value);
     }
 }
