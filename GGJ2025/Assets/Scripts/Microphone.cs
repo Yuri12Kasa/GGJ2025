@@ -93,6 +93,7 @@ public class Microphone : MonoBehaviour
         //SendRecording();
         if (GameManagerMauro.Instance != null)
         {
+            GameManagerMauro.Instance.track.clip = _recordedClip;
             if (GameManagerMauro.Instance.playersNumber == GameManagerMauro.Instance.GetCurrentPlayer())
             {
                 CheckText();

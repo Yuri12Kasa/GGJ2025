@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Yuri
@@ -50,6 +51,10 @@ namespace Yuri
             return loudness;
         }
 
+        public void AddModifier(List<TrackModifier> trackModifier)
+        {
+            GameManagerMauro.Instance.AddTrackModifier(trackModifier);
+        }
         private void Move()
         {
             float loudness = GetLoudnessFromMicrophone();
