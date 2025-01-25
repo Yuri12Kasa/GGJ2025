@@ -43,6 +43,7 @@ public class TimeManager : MonoBehaviour
             _timer = 0;
             OnTimeExpired.Invoke();
             gameObject.SetActive(false);
+            EndGameForNow();
         }
     }
 

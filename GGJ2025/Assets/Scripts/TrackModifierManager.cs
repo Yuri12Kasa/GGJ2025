@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 using Yuri;
 
 public class TrackModifierManager : MonoBehaviour
 {
+    public UnityEvent OnEndTrack;
     public AudioSource masterAudioSource;
     public AudioSource trackModifierAudioSource;
     public Track currentTrack;
@@ -11,6 +14,14 @@ public class TrackModifierManager : MonoBehaviour
     private bool _trackIsPlaying;
 
     private int _modifierIndex;
+
+    private void Start()
+    {
+        if (GameManagerMauro.Instance)
+        {
+            currentTrack = GameManagerMauro.Instance.track;
+        }
+    }
 
     private void Update()
     {
@@ -44,6 +55,8 @@ public class TrackModifierManager : MonoBehaviour
             _trackIsPlaying = false;
             _timer = 0;
             _modifierIndex = 0;
+            OnEndTrack?.Invoke();
+            enabled = false;
         }
         else
         {

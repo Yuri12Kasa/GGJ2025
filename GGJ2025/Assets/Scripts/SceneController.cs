@@ -14,7 +14,7 @@ public class SceneController : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
     
