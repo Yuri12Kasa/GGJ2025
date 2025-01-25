@@ -1,12 +1,15 @@
-using System;
 using System.IO;
 using System.Linq;
 using HuggingFace.API;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Microphone : MonoBehaviour
 {
+
+    public UnityEvent OnStartRecording;
+    public UnityEvent OnEndRecording;
     
     [Header("Debug Texts")]
     [SerializeField] public TextMeshProUGUI text;
@@ -20,8 +23,9 @@ public class Microphone : MonoBehaviour
 
     private int _playersNum;
     private byte[] bytes;
-    private bool _isRecording;
+    [SerializeField] private bool _isRecording;
     private bool _firstRecord;
+    
     private void Awake()
     {
         _firstRecord = true;
@@ -30,33 +34,85 @@ public class Microphone : MonoBehaviour
 
     private void Start()
     {
-        _playersNum = GameManagerMauro.Instance.playersNumber;
-        playersSpeech = new string[2];
+        if (GameManagerMauro.Instance != null)
+        {
+            _playersNum = GameManagerMauro.Instance.playersNumber;
+            playersSpeech = new string[2];
+        }
+        else
+        {
+            Debug.LogWarning("GameManagerMauro.Instance is null");
+        }
+    }
+
+    private void Update()
+    {
+        if (_recordedClip != null)
+            return;
+        
+        if (!_isRecording)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                Debug.Log("StartRecord");
+                StartRecording();
+            }
+        }
+        else
+        {
+            if (!Input.GetKeyUp(KeyCode.Space))
+            {
+                StopRecording();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            PlayRecordedClip();
+        }
     }
 
     public void StartRecording()
     {
+        if (_recordedClip != null)
+            return;
+        OnStartRecording.Invoke();
+        _isRecording = true;
         _recordedClip = UnityEngine.Microphone.Start(UnityEngine.Microphone.devices[0], false, lengthSec, sampleRate);
     }
 
     public void StopRecording()
     {
+        OnEndRecording.Invoke();
         var position = UnityEngine.Microphone.GetPosition(null);
         UnityEngine.Microphone.End(null);
         var samples = new float[position * _recordedClip.channels];
-        _recordedClip.GetData(samples, 0);
+        _recordedClip.GetData(samples, sampleRate);
         bytes = EncodeAsWAV(samples, _recordedClip.frequency, _recordedClip.channels);
         _isRecording = false; 
-        SendRecording();
-        if (GameManagerMauro.Instance.playersNumber == GameManagerMauro.Instance.GetCurrentPlayer())
+        //SendRecording();
+        if (GameManagerMauro.Instance != null)
         {
-            CheckText();
+            if (GameManagerMauro.Instance.playersNumber == GameManagerMauro.Instance.GetCurrentPlayer())
+            {
+                CheckText();
+            }
         }
     }
 
     public void PlayRecordedClip()
     {
-        _audioSource.PlayOneShot(_recordedClip);
+        Debug.Log("PlayRecordedClip");
+        _audioSource.clip = _recordedClip;
+        _audioSource.Play();
+    }
+
+    public void NextScene()
+    {
+        if (SceneController.Instance)
+        {
+            SceneController.Instance.NextScene();
+        }
     }
 
     #region SpeechToText
