@@ -48,7 +48,7 @@ public class SpawnManager : MonoBehaviour
     private void Spawn()
     {
         var obstacleToSpawn = obstaclesToSpawn[(int)Randomaizer(0, obstaclesToSpawn.Count)];
-        Instantiate(obstacleToSpawn.gameObject, new Vector3(obstacleToSpawn.transform.position.x,Randomaizer(minVerticalPoint,maxVerticalPoint)), obstacleToSpawn.transform.rotation);
+        Instantiate(obstacleToSpawn.gameObject, new Vector3(this.transform.position.x,Randomaizer(minVerticalPoint,maxVerticalPoint)), obstacleToSpawn.transform.rotation);
     }
 
     private float Randomaizer(float min, float max)
