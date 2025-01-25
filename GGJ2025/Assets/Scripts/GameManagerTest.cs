@@ -7,12 +7,9 @@ using UnityEngine.Video;
 public class GameManagerTest : MonoBehaviour
 {
     public TextMeshProUGUI finalText;
-    [SerializeField] SpeechToText microphone;
+    [SerializeField] Microphone microphone;
    
-    void Start()
-    {
-      microphone.SetString("firstPlayer");
-    }
+   
 
     private void Update()
     {
