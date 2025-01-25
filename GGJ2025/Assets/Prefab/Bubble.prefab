@@ -220,10 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e6f148e725aa14d86cecfa0ce8d378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 2
-  moveSpeed: 0.06
+  maxSpeed: 3
+  moveSpeed: 0.2
   detector: {fileID: 0}
-  loudnessSensibility: 28
+  loudnessSensibility: 142
   threshold: 0.1
 --- !u!54 &5414706246214479984
 Rigidbody:
