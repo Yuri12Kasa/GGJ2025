@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Yuri;
 using Random = UnityEngine.Random;
@@ -34,7 +34,7 @@ public class GameManagerMauro : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
@@ -83,5 +83,41 @@ public class GameManagerMauro : MonoBehaviour
     public void AddTrackModifier(List<TrackModifier> modifiers)
     {
         track.trackModifiers.AddRange(modifiers);
+    }
+
+    public void CheckWin(TMP_Text text)
+    {
+        string sentence = text.text;
+        sentence = sentence.Remove(sentence.Length - 1, 1);
+        if (CompareStringToSentence(sentence))
+        {
+            Debug.Log("You win!");
+        }
+        else
+        {
+            Debug.Log("You lose!");
+        }
+    }
+
+    private bool CompareStringToSentence(string sentence)
+    {
+        string correctSentence = "";
+        
+        for (int i = 0; i < _activeSentence.sentences.Length; i++)
+        {
+            if (i == _activeSentence.sentences.Length - 1)
+            {
+                correctSentence += _activeSentence.sentences[i];
+            }
+            else
+            {
+                correctSentence += _activeSentence.sentences[i] + " ";
+            }
+        }
+        
+        correctSentence = correctSentence.ToLower();
+        sentence = sentence.ToLower();
+        
+        return sentence == correctSentence;
     }
 }
