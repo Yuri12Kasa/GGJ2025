@@ -13,7 +13,7 @@ public class TimeManager : MonoBehaviour
     public float SceneTime => sceneTime;
     [SerializeField] private float sceneTime = 20f;
     public float Timer => _timer;
-    private float _timer;
+    [SerializeField] private float _timer;
 
     private void Awake()
     {

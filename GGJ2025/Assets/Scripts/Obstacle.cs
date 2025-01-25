@@ -1,8 +1,5 @@
-
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Yuri;
 
 public class Obstacle : MonoBehaviour
 {
@@ -22,10 +19,13 @@ public class Obstacle : MonoBehaviour
    {
       if (other.CompareTag("Bubble"))
       {
-         
+         foreach (TrackModifier modifier in trackModifier)
+         {
+            modifier.time = TimeManager.Instance.GetNormalizedTime;
+         }
          var bubble = other.GetComponent<MoveFromLoudness>();
          bubble.AddModifier(trackModifier);
-         Destroy(this.gameObject);
+         Destroy(gameObject);
       }
    }
 }
