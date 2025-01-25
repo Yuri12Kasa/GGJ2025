@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Yuri
 {
@@ -54,8 +52,7 @@ namespace Yuri
                 if (_index < currentTrack.trackModifiers.Count && _timer > currentTrack.trackModifiers[_index].time)
                 {
                     float newPitch = currentTrack.trackModifiers[_index].pitch;
-                    masterAudioSource.outputAudioMixerGroup.audioMixer.SetFloat("Pitch",
-                        newPitch); 
+                    masterAudioSource.outputAudioMixerGroup.audioMixer.SetFloat("Pitch", newPitch); 
                     trackModifierAudioSource.PlayOneShot(currentTrack.trackModifiers[_index].clip);
                     _index++;
                 }
