@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Sentence 2
   m_EditorClassIdentifier: 
   sentences:
-  - Time
-  - to
-  - leave
+  - try
+  - screaming
+  - silently
