@@ -13,7 +13,15 @@ public class SentenceUI : MonoBehaviour
 
     private void Start()
     {
-        _sentence = GameManagerMauro.Instance.GetSentence();
-        _text.text = _sentence;
+        if (GameManagerMauro.Instance != null)
+        {
+            _sentence = GameManagerMauro.Instance.GetSentence();
+            _text.text = _sentence;
+        }
+        else
+        {
+            Debug.LogWarning("GameManagerMauro.Instance is null");
+        }
+        
     }
 }
