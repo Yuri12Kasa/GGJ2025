@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManagerMauro : MonoBehaviour
@@ -22,6 +23,15 @@ public class GameManagerMauro : MonoBehaviour
         else
         {
             Destroy(this);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            NextPlayer();
+            SceneController.Instance.NextScene();
         }
     }
 
