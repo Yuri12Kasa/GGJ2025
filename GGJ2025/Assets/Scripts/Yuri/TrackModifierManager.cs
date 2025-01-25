@@ -7,13 +7,15 @@ namespace Yuri
 {
     public class TrackModifierManager : MonoBehaviour
     {
+        public float modifierTimeSensibility = 0.01f;
         public AudioSource masterAudioSource;
         public AudioSource trackModifierAudioSource;
         public Track currentTrack;
         [SerializeField] private float _timer;
         private float _maxTime;
         private bool _trackIsPlaying;
-        [SerializeField] private List<TrackModifier> _currentTrackModifiers;
+
+        private int index;
 
         private void Update()
         {
@@ -32,7 +34,7 @@ namespace Yuri
             _trackIsPlaying = true;
             _maxTime = currentTrack.clip.length;
             masterAudioSource.clip = currentTrack.clip;
-            _currentTrackModifiers = currentTrack.trackModifiers;
+            currentTrack.SortList();
             
             masterAudioSource.Play();
         }
@@ -45,17 +47,16 @@ namespace Yuri
             {
                 _trackIsPlaying = false;
                 _timer = 0;
+                index = 0;
             }
             else
             {
-                _timer += Time.deltaTime;
-                foreach (var trackModifier in _currentTrackModifiers)
+                if (_timer > currentTrack.trackModifiers[index].time)
                 {
-                    if (Mathf.Abs(trackModifier.time - _timer) < 0.3)
-                    {
-                        trackModifierAudioSource.PlayOneShot(trackModifier.clip);
-                    }
+                    trackModifierAudioSource.PlayOneShot(currentTrack.trackModifiers[index].clip);
+                    index++;
                 }
+                _timer += Time.deltaTime;
             }
         }
         
@@ -66,8 +67,12 @@ namespace Yuri
     public class Track
     {
         public AudioClip clip;
-
         public List<TrackModifier> trackModifiers;
+
+        public void SortList()
+        {
+            trackModifiers.Sort((x, y) => x.time.CompareTo(y.time));
+        }
     }
 
     [Serializable]
