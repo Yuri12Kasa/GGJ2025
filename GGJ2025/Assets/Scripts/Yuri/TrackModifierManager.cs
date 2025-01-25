@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -16,7 +14,7 @@ namespace Yuri
         private float _maxTime;
         private bool _trackIsPlaying;
 
-        private int index;
+        private int _index;
 
         private void Update()
         {
@@ -36,6 +34,7 @@ namespace Yuri
             _maxTime = currentTrack.clip.length;
             masterAudioSource.clip = currentTrack.clip;
             currentTrack.SortList();
+            masterAudioSource.outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 1); 
             
             masterAudioSource.Play();
         }
@@ -48,40 +47,21 @@ namespace Yuri
             {
                 _trackIsPlaying = false;
                 _timer = 0;
-                index = 0;
+                _index = 0;
             }
             else
             {
-                if (index < currentTrack.trackModifiers.Count && _timer > currentTrack.trackModifiers[index].time)
+                if (_index < currentTrack.trackModifiers.Count && _timer > currentTrack.trackModifiers[_index].time)
                 {
-                    trackModifierAudioSource.PlayOneShot(currentTrack.trackModifiers[index].clip);
-                    index++;
+                    float newPitch = currentTrack.trackModifiers[_index].pitch;
+                    masterAudioSource.outputAudioMixerGroup.audioMixer.SetFloat("Pitch",
+                        newPitch); 
+                    trackModifierAudioSource.PlayOneShot(currentTrack.trackModifiers[_index].clip);
+                    _index++;
                 }
                 _timer += Time.deltaTime;
             }
         }
         
     }
-    
-
-    [Serializable]
-    public class Track
-    {
-        public AudioClip clip;
-        public List<TrackModifier> trackModifiers;
-
-        public void SortList()
-        {
-            trackModifiers.Sort((x, y) => x.time.CompareTo(y.time));
-        }
-    }
-
-    [Serializable]
-    public class TrackModifier
-    {
-        public float time;
-        public float pitch = 1;
-        public AudioClip clip;
-    }
-        
 }

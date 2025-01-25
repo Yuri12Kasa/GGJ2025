@@ -256,9 +256,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c906301db56ab4a9fbfcc9f3b61032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalText: {fileID: 0}
-  microphone: {fileID: 0}
-  playersNumber: 1
+  mainSceneTime: 20
+  sentencesPool:
+  - {fileID: 11400000, guid: 84f4884aacd069d4b8b048d1138e31f6, type: 2}
+  - {fileID: 11400000, guid: a86aea26cc032ed4285e56f1604bae79, type: 2}
+  - {fileID: 11400000, guid: c885d4d8badacd34e98f6e9bf863c0fe, type: 2}
+  playersNumber: 2
 --- !u!4 &400415806
 Transform:
   m_ObjectHideFlags: 0
@@ -697,7 +700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1176,10 +1179,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 676190230}
   m_HandleRect: {fileID: 1255541648}
   m_Direction: 0
-  m_MinValue: 1
+  m_MinValue: 2
   m_MaxValue: 5
   m_WholeNumbers: 1
-  m_Value: 1
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
