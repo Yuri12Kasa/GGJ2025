@@ -15,15 +15,16 @@ public class Obstacle : MonoBehaviour
 
    private void MoveTo()
    {
-      transform.position += Vector3.left * speed * Time.deltaTime;
+      transform.position += Vector3.left * (speed * Time.deltaTime);
    }
 
    private void OnTriggerEnter(Collider other)
    {
-      if (other.tag == "Bubble")
+      if (other.CompareTag("Bubble"))
       {
-         var bubblee = other.GetComponent<MoveFromLoudness>();
-         bubblee.AddModifier(trackModifier);
+         
+         var bubble = other.GetComponent<MoveFromLoudness>();
+         bubble.AddModifier(trackModifier);
          Destroy(this.gameObject);
       }
    }
