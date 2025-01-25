@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa21e3e2f23df0f4e82275435a30ee5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canBeDestroyed: 1
   trackModifier:
   - time: 5
     pitch: 1.305
