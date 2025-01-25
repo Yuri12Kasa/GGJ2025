@@ -253,7 +253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4298790396870163011, guid: 905dc32cbad083d4e99fd154943c72c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.1
+      value: -87.7
       objectReference: {fileID: 0}
     - target: {fileID: 4298790396870163011, guid: 905dc32cbad083d4e99fd154943c72c0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 524369418}
   - component: {fileID: 524369417}
   m_Layer: 0
-  m_Name: clock (4)
+  m_Name: valve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -766,7 +766,7 @@ GameObject:
   - component: {fileID: 1209941687}
   - component: {fileID: 1209941686}
   m_Layer: 0
-  m_Name: clock
+  m_Name: valve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -874,7 +874,7 @@ GameObject:
   - component: {fileID: 1222225479}
   - component: {fileID: 1222225478}
   m_Layer: 0
-  m_Name: clock (1)
+  m_Name: valve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1198,7 +1198,7 @@ GameObject:
   - component: {fileID: 1691669854}
   - component: {fileID: 1691669853}
   m_Layer: 0
-  m_Name: clock (2)
+  m_Name: valve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1306,7 +1306,7 @@ GameObject:
   - component: {fileID: 1841202409}
   - component: {fileID: 1841202408}
   m_Layer: 0
-  m_Name: clock (3)
+  m_Name: valve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
