@@ -1,6 +1,6 @@
 using System.IO;
 using System.Linq;
-using HuggingFace.API;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -88,7 +88,7 @@ public class Microphone : MonoBehaviour
         UnityEngine.Microphone.End(null);
         var samples = new float[position * _recordedClip.channels];
         _recordedClip.GetData(samples, sampleRate);
-        bytes = EncodeAsWAV(samples, _recordedClip.frequency, _recordedClip.channels);
+        //sbytes = EncodeAsWAV(samples, _recordedClip.frequency, _recordedClip.channels);
         _isRecording = false; 
         //SendRecording();
         if (GameManagerMauro.Instance != null)
@@ -115,7 +115,7 @@ public class Microphone : MonoBehaviour
         }
     }
 
-    #region SpeechToText
+   /* #region SpeechToText
 
     private void SendRecording() {
         HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
@@ -152,6 +152,7 @@ public class Microphone : MonoBehaviour
     }
 
     #endregion
+   */
     
     void CheckText()
     {
