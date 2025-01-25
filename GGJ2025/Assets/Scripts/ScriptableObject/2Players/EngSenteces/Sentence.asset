@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 389863baf1d0e914892e83e031e965b2, type: 3}
-  m_Name: 3PlayerSentencesPool
+  m_Script: {fileID: 11500000, guid: 469171d1ba3ee5647bf34ed93fa370ff, type: 3}
+  m_Name: Sentence
   m_EditorClassIdentifier: 
-  players: 3
   sentences:
-  - {fileID: 11400000, guid: b28139d56a89f1940b826ea857e7df3a, type: 2}
+  - hi
+  - there
