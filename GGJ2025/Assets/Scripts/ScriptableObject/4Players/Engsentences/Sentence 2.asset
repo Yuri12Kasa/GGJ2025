@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sentence 2
   m_EditorClassIdentifier: 
   sentences:
-  - 
-  - 
-  - 
-  - 
+  - bubbles
+  - among
+  - whimsical
+  - creatures
