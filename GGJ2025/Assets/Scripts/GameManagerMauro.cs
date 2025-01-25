@@ -15,6 +15,8 @@ public class GameManagerMauro : MonoBehaviour
     [HideInInspector] public int playersNumber = 2;
     private int _currentPlayer = 1;
     
+    public int GetCurrentPlayer() => _currentPlayer-1;
+    
     private void Awake()
     {
         if (!Instance)
