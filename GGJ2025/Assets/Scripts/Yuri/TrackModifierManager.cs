@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -51,7 +52,7 @@ namespace Yuri
             }
             else
             {
-                if (_timer > currentTrack.trackModifiers[index].time)
+                if (index < currentTrack.trackModifiers.Count && _timer > currentTrack.trackModifiers[index].time)
                 {
                     trackModifierAudioSource.PlayOneShot(currentTrack.trackModifiers[index].clip);
                     index++;
