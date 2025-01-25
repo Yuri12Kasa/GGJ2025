@@ -474,8 +474,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTimeExpired:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 587997145}
+        m_TargetAssemblyTypeName: TimeManager, Assembly-CSharp
+        m_MethodName: EndGameForNow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   sceneTime: 20
+  _timer: 0
 --- !u!1 &731090393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1483,6 +1496,10 @@ PrefabInstance:
       propertyPath: detector
       value: 
       objectReference: {fileID: 855130386}
+    - target: {fileID: 3560253018408458189, guid: 905dc32cbad083d4e99fd154943c72c0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3844063231218765438, guid: 905dc32cbad083d4e99fd154943c72c0, type: 3}
       propertyPath: m_Name
       value: Bubble

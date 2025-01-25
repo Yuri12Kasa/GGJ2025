@@ -1,12 +1,15 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Yuri;
+using Random = UnityEngine.Random;
 
 public class GameManagerMauro : MonoBehaviour
 {
     public static GameManagerMauro Instance;
     
     public float mainSceneTime = 20f;
+    private float _time;
 
     public Track track;
     
@@ -65,7 +68,16 @@ public class GameManagerMauro : MonoBehaviour
 
     public void NextPlayer()
     {
+        var nextPlayer = _currentPlayer + 1;
+        
+        if(nextPlayer > playersNumber)
+            return;
+        
+        if(nextPlayer == playersNumber)
+            SceneController.Instance.NextScene();
+        
         _currentPlayer++;
+        SceneController.Instance.PreviousScene();
     }
 
     public void AddTrackModifier(List<TrackModifier> modifiers)
