@@ -32,9 +32,12 @@ namespace Yuri
             }
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             Move();
+            
+            float yVelocity = Mathf.Clamp(_rigidbody.linearVelocity.y * Time.fixedTime * moveSpeed, -maxSpeed, maxSpeed);
+            _rigidbody.linearVelocity += Vector3.up * yVelocity;
         }
 
         private float GetLoudnessFromMicrophone()
@@ -53,8 +56,8 @@ namespace Yuri
             if (loudness == 0)
                 return;
 
-            float yVelocity = Mathf.Clamp(loudness * moveSpeed, 0, maxSpeed);
-            _rigidbody.linearVelocity += Vector3.up * (yVelocity);
+            float yVelocity = Mathf.Clamp(loudness * moveSpeed * Time.fixedTime, 0, maxSpeed);
+            _rigidbody.linearVelocity = new Vector3(_rigidbody.linearVelocity.x, yVelocity, _rigidbody.linearVelocity.z);
         }
     }
 }
