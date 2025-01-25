@@ -24,7 +24,13 @@ public class SceneController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+    }
 
-        
+    public void PreviousScene()
+    {
+        if (SceneManager.GetActiveScene().buildIndex - 1 >= SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        } 
     }
 }
