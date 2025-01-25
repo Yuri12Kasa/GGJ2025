@@ -1,13 +1,12 @@
-using TMPro;
 using UnityEngine;
 
 public class GameManagerMauro : MonoBehaviour
 {
     public static GameManagerMauro Instance;
-    public TextMeshProUGUI finalText;
-    [SerializeField] Microphone microphone;
+    
     //Player
     public int playersNumber = 1;
+    private int _currentPlayer = 1; 
     
     private void Awake()
     {
@@ -21,7 +20,9 @@ public class GameManagerMauro : MonoBehaviour
             Destroy(this);
         }
     }
-    
-    
-    
+
+    public void NextPlayer()
+    {
+        _currentPlayer++;
+    }
 }
