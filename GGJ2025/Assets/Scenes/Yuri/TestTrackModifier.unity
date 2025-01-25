@@ -171,14 +171,14 @@ MonoBehaviour:
   currentTrack:
     clip: {fileID: 8300000, guid: 6d6c2d5051facdd4ba66fa082814a9c3, type: 3}
     trackModifiers:
-    - time: 4
-      pitch: 0.74
+    - time: 2
+      pitch: 0.52
       clip: {fileID: 8300000, guid: 6990040ec013bd44181183ebe1f50b69, type: 3}
-    - time: 3.73
-      pitch: 1.42
-      clip: {fileID: 8300000, guid: 3386a5f2d95679845bb6d78479771d3e, type: 3}
     - time: 5
-      pitch: 1
+      pitch: 1.86
+      clip: {fileID: 8300000, guid: 3386a5f2d95679845bb6d78479771d3e, type: 3}
+    - time: 8
+      pitch: 1.12
       clip: {fileID: 8300000, guid: d3d91688d950f3e499ac80ffead01016, type: 3}
   _timer: 0
 --- !u!82 &268553792
