@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using System.Linq;
 using HuggingFace.API;
 using TMPro;
 using UnityEngine;
@@ -16,14 +18,20 @@ public class Microphone : MonoBehaviour
     private AudioSource _audioSource;
     public string[] playersSpeech;
 
+    private int _playersNum;
     private byte[] bytes;
     private bool _isRecording;
     private bool _firstRecord;
     private void Awake()
     {
-        playersSpeech = new string[2];
         _firstRecord = true;
         _audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        _playersNum = GameManagerMauro.Instance.playersNumber;
+        playersSpeech = new string[2];
     }
 
     public void StartRecording()
@@ -40,6 +48,10 @@ public class Microphone : MonoBehaviour
         bytes = EncodeAsWAV(samples, _recordedClip.frequency, _recordedClip.channels);
         _isRecording = false; 
         SendRecording();
+        if (GameManagerMauro.Instance.playersNumber == GameManagerMauro.Instance.GetCurrentPlayer())
+        {
+            CheckText();
+        }
     }
 
     public void PlayRecordedClip()
@@ -53,16 +65,6 @@ public class Microphone : MonoBehaviour
         HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
             text.color = Color.white;
             text.text = response;
-            if (_firstRecord)
-            {
-                playersSpeech[0] = response;
-                _firstRecord = false;
-            }
-            else
-            {
-                playersSpeech[1] = response;
-                CheckText();
-            }
         }, error => {
             text.color = Color.red;
             text.text = error;
@@ -97,7 +99,7 @@ public class Microphone : MonoBehaviour
     
     void CheckText()
     {
-        if (playersSpeech[0].Equals(playersSpeech[1]))
+        if (playersSpeech[0].Equals(playersSpeech.Last()))
         {
             ShowEndLevel.Instance.ShowText("Hai vinto sei fortissimo", Color.magenta);
         }
