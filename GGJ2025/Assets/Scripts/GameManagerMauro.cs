@@ -6,8 +6,12 @@ public class GameManagerMauro : MonoBehaviour
     
     //Player
     public int playersNumber = 1;
-    private int _currentPlayer = 1; 
-    
+    private int _currentPlayer = 1;
+
+    public int GetCurrentPlayer()
+    {
+        return _currentPlayer;
+    }
     private void Awake()
     {
         if (!Instance)
