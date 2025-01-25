@@ -1,12 +1,12 @@
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Yuri;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Obstacle : MonoBehaviour
 {
-   public TrackModifier trackModifier;
+   public List<TrackModifier> trackModifier;
    public float speed;
    private void Update()
    {
@@ -20,6 +20,11 @@ public class Obstacle : MonoBehaviour
 
    private void OnTriggerEnter(Collider other)
    {
-      
+      if (other.tag == "Bubble")
+      {
+         var bubblee = other.GetComponent<MoveFromLoudness>();
+         bubblee.AddModifier(trackModifier);
+         Destroy(this.gameObject);
+      }
    }
 }

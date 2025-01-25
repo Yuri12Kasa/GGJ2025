@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Yuri;
 
@@ -65,5 +67,10 @@ public class GameManagerMauro : MonoBehaviour
     public void NextPlayer()
     {
         _currentPlayer++;
+    }
+
+    public void AddTrackModifier(List<TrackModifier> modifiers)
+    {
+        track.trackModifiers.AddRange(modifiers);
     }
 }
