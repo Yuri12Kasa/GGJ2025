@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Player5MidSpawnerData
   m_EditorClassIdentifier: 
   playerNumber: 6
-  timerToNextSpawn: 5
+  timerToNextSpawn: 4
   obstaclesToSpawn:
   - {fileID: 5875324440232792942, guid: 4a2a7cdc662308a4396e6c0f1db4a7fc, type: 3}
-  spawnStart: 3
+  spawnStart: 4
   spawnEnd: 17

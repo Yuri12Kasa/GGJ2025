@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player1MidSpawnerData
   m_EditorClassIdentifier: 
   playerNumber: 1
-  timerToNextSpawn: 3
+  timerToNextSpawn: 20
   obstaclesToSpawn: []
   spawnStart: 17
   spawnEnd: 17
