@@ -68,7 +68,6 @@ public class MoveFromLoudness : MonoBehaviour
 
     public float GetNormalizedLoudness()
     {
-        Debug.Log(moveSpeed * Time.deltaTime * _loudness * loudnessSensibility);
         return GetLoudnessFromMicrophone() / 0.33f;
     }
 }

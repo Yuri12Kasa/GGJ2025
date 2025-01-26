@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6873c6cca3fa88b4fa6d60ce703d60f5, type: 3}
-  m_Name: Player1SpawnerData
+  m_Name: Player1TopSpawnerData
   m_EditorClassIdentifier: 
   playerNumber: 1
   timerToNextSpawn: 5
