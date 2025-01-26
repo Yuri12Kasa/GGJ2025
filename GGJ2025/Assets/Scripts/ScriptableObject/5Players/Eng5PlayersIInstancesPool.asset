@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389863baf1d0e914892e83e031e965b2, type: 3}
   m_Name: Eng5PlayersIInstancesPool
   m_EditorClassIdentifier: 
-  players: 0
-  sentences: []
+  players: 5
+  sentences:
+  - {fileID: 11400000, guid: ff1a39d178d2f2a41866ef894c51e458, type: 2}
+  - {fileID: 11400000, guid: 2af4d79568421624b986e5a688c49999, type: 2}
+  - {fileID: 11400000, guid: db76884b1ffdbc245b86dee229d345cb, type: 2}
+  - {fileID: 11400000, guid: d43e4a9f739d8524e84a75a4e432630d, type: 2}

@@ -3061,7 +3061,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1255541648}
   m_Direction: 0
   m_MinValue: 2
-  m_MaxValue: 5
+  m_MaxValue: 6
   m_WholeNumbers: 1
   m_Value: 2
   m_OnValueChanged:
@@ -5082,6 +5082,18 @@ PrefabInstance:
       propertyPath: track.clip
       value: 
       objectReference: {fileID: 8300000, guid: d3d91688d950f3e499ac80ffead01016, type: 3}
+    - target: {fileID: 369997506917232925, guid: 27d123796130198448923a18d6fe79b8, type: 3}
+      propertyPath: sentencesPool.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 369997506917232925, guid: 27d123796130198448923a18d6fe79b8, type: 3}
+      propertyPath: 'sentencesPool.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e46683d07dfd09448dd4d99e953a6a1, type: 2}
+    - target: {fileID: 369997506917232925, guid: 27d123796130198448923a18d6fe79b8, type: 3}
+      propertyPath: 'sentencesPool.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bbfb233fbdd9a0645a03a2f87c6da68e, type: 2}
     - target: {fileID: 4243039999628836695, guid: 27d123796130198448923a18d6fe79b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

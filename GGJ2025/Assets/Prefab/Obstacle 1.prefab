@@ -125,8 +125,5 @@ MonoBehaviour:
   trackModifier:
   - time: 5
     pitch: 1.305
-    clip: {fileID: 8300000, guid: d3d91688d950f3e499ac80ffead01016, type: 3}
-  - time: 6
-    pitch: 1.81
-    clip: {fileID: 8300000, guid: 6990040ec013bd44181183ebe1f50b69, type: 3}
+    clip: {fileID: 8300000, guid: 3386a5f2d95679845bb6d78479771d3e, type: 3}
   speed: 5

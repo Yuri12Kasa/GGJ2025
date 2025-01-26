@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: 3
   sentences:
-  - {fileID: 11400000, guid: b28139d56a89f1940b826ea857e7df3a, type: 2}
+  - {fileID: 11400000, guid: 748d6b46355750f418525934b46fbb27, type: 2}
+  - {fileID: 11400000, guid: 5137374acb8dffc4fbcc9f0c7f5e26e8, type: 2}
+  - {fileID: 11400000, guid: 9a4c239ec4ef70249848e2a61675ea45, type: 2}
