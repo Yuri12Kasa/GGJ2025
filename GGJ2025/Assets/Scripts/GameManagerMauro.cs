@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Yuri;
 using Random = UnityEngine.Random;
@@ -7,9 +8,6 @@ using Random = UnityEngine.Random;
 public class GameManagerMauro : MonoBehaviour
 {
     public static GameManagerMauro Instance;
-    
-    public float mainSceneTime = 20f;
-    private float _time;
 
     public Track track;
     
@@ -20,9 +18,9 @@ public class GameManagerMauro : MonoBehaviour
     
     //Player
     [HideInInspector] public int playersNumber = 2;
-    private int _currentPlayer = 1;
+    private int _currentPlayer;
     
-    public int GetCurrentPlayer() => _currentPlayer-1;
+    public int GetCurrentPlayer() => _currentPlayer;
     
     private void Awake()
     {
@@ -34,7 +32,7 @@ public class GameManagerMauro : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
@@ -63,7 +61,7 @@ public class GameManagerMauro : MonoBehaviour
 
     public string GetSentence()
     {
-        return _activeSentence.sentences[_currentPlayer - 1];
+        return _activeSentence.sentences[_currentPlayer];
     }
 
     public void NextPlayer()
@@ -72,9 +70,12 @@ public class GameManagerMauro : MonoBehaviour
         
         if(nextPlayer > playersNumber)
             return;
-        
-        if(nextPlayer == playersNumber)
+
+        if (nextPlayer == playersNumber)
+        {
             SceneController.Instance.NextScene();
+            return;
+        }
         
         _currentPlayer++;
         SceneController.Instance.PreviousScene();
@@ -83,5 +84,46 @@ public class GameManagerMauro : MonoBehaviour
     public void AddTrackModifier(List<TrackModifier> modifiers)
     {
         track.trackModifiers.AddRange(modifiers);
+    }
+
+    public void CheckWin(TMP_Text text)
+    {
+        string sentence = text.text;
+        sentence = sentence.Remove(sentence.Length - 1, 1);
+        if (CompareStringToSentence(sentence))
+        {
+            Debug.Log("You win!");
+        }
+        else
+        {
+            Debug.Log("You lose!");
+        }
+    }
+
+    private bool CompareStringToSentence(string sentence)
+    {
+        string correctSentence = "";
+        
+        for (int i = 0; i < _activeSentence.sentences.Length; i++)
+        {
+            if (i == _activeSentence.sentences.Length - 1)
+            {
+                correctSentence += _activeSentence.sentences[i];
+            }
+            else
+            {
+                correctSentence += _activeSentence.sentences[i] + " ";
+            }
+        }
+        
+        correctSentence = correctSentence.ToLower();
+        sentence = sentence.ToLower();
+        
+        return sentence == correctSentence;
+    }
+
+    public void SetTrackClip(AudioClip clip)
+    {
+        track.clip = clip;
     }
 }
