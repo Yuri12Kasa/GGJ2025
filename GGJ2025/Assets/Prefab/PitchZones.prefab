@@ -124,7 +124,7 @@ MonoBehaviour:
   canBeDestroyed: 0
   trackModifier:
   - time: 0
-    pitch: 1.5
+    pitch: 1.2
     clip: {fileID: 0}
   speed: 0
 --- !u!1 &6017252602848302346
@@ -251,7 +251,7 @@ MonoBehaviour:
   canBeDestroyed: 0
   trackModifier:
   - time: 0
-    pitch: 0
+    pitch: 0.5
     clip: {fileID: 0}
   speed: 0
 --- !u!1 &7153928048647902862

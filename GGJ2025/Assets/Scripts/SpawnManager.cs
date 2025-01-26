@@ -1,57 +1,74 @@
 using System.Collections.Generic;
-using TMPro;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
-    [FormerlySerializedAs("objsToSpawn")] public List<Obstacle> obstaclesToSpawn = new List<Obstacle>();
-    public float spawnStart = 1.5f;
-    public float spawnEnd = 19.5f;
-    public float timerToNextSpawn = 1f;
+    public SpawnerData[] spawnersData;
+    private float _timerToNextSpawn = 1f;
 
-    private float timer;
     [SerializeField] private Transform _maxSpawnPoint;
     [SerializeField] private Transform _minSpawnPoint;
 
-    [SerializeField] private float minVerticalPoint;
-    [SerializeField] private float maxVerticalPoint;
+    private List<Obstacle> _obstaclesToSpawn = new ();
+    
+    private float _spawnStart = 1.5f;
+    private float _spawnEnd = 19.5f;
+    private float _minVerticalPoint;
+    private float _maxVerticalPoint;
+    private float _timer;
+    
     private void Start()
     {
-        timer = 0;
-        minVerticalPoint = _minSpawnPoint.position.y;
-        maxVerticalPoint = _maxSpawnPoint.position.y;
-        
-        if (spawnStart < 0)
+        _timer = 0;
+        _minVerticalPoint = _minSpawnPoint.position.y;
+        _maxVerticalPoint = _maxSpawnPoint.position.y;
+
+        if (GameManagerMauro.Instance)
         {
-            spawnStart = 0;
+            foreach (SpawnerData data in spawnersData)
+            {
+                if (data.playersNumber == GameManagerMauro.Instance.playersNumber)
+                {
+                    _timerToNextSpawn = data.timerToNextSpawn;
+                    _obstaclesToSpawn = data.obstaclesToSpawn.ToList();
+                    _spawnStart = data.spawnStart;
+                    _spawnEnd = data.spawnEnd;
+                }
+            }
         }
-        if (spawnEnd > TimeManager.Instance.SceneTime)
+        
+        if (_spawnStart < 0)
         {
-            spawnEnd = TimeManager.Instance.SceneTime;
+            _spawnStart = 0;
+        }
+        if (_spawnEnd > TimeManager.Instance.SceneTime)
+        {
+            _spawnEnd = TimeManager.Instance.SceneTime;
         }
     }
     private void Update()
     { 
-        if (spawnStart <= TimeManager.Instance.GetTime())
+        if (_spawnStart <= TimeManager.Instance.GetTime())
         {
-            if (spawnEnd >= TimeManager.Instance.GetTime())
+            if (_spawnEnd >= TimeManager.Instance.GetTime())
             {
-                timer += Time.deltaTime;
-                if (timer < timerToNextSpawn) return;
+                _timer += Time.deltaTime;
+                if (_timer < _timerToNextSpawn) 
+                    return;
                 Spawn();
-                timer = 0;
+                _timer = 0;
             }
         }
     }
     private void Spawn()
     {
-        var obstacleToSpawn = obstaclesToSpawn[(int)Randomaizer(0, obstaclesToSpawn.Count)];
-        Instantiate(obstacleToSpawn.gameObject, new Vector3(this.transform.position.x,Randomaizer(minVerticalPoint,maxVerticalPoint)), obstacleToSpawn.transform.rotation);
+        var obstacleToSpawn = _obstaclesToSpawn[(int)Randomizer(0, _obstaclesToSpawn.Count)];
+        Instantiate(obstacleToSpawn.gameObject, new Vector3(this.transform.position.x,Randomizer(_minVerticalPoint,_maxVerticalPoint)), obstacleToSpawn.transform.rotation);
     }
 
-    private float Randomaizer(float min, float max)
+    private float Randomizer(float min, float max)
     {
         var index = Random.Range(min,max);
         return index;

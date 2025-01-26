@@ -760,7 +760,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6644482738370003053, guid: 2265f69a706e12644b7b2b4c5bfe6d7d, type: 3}
       propertyPath: trackModifier.Array.data[0].pitch
-      value: 2
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8822624495031935479, guid: 2265f69a706e12644b7b2b4c5bfe6d7d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1884,13 +1884,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ffa4cc8a4e7c1d448416e38197de719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnersData:
+  - {fileID: 11400000, guid: 104a04990d9b1de428e13016f0658ef3, type: 2}
+  - {fileID: 11400000, guid: 65e408fe7c5d01c479d5f1d6267f4667, type: 2}
+  - {fileID: 11400000, guid: 626d9469060493c4c82023fed3344838, type: 2}
+  - {fileID: 11400000, guid: 53e58d569bfc3264d9aac20b285afb84, type: 2}
   obstaclesToSpawn:
   - {fileID: 5875324440232792942, guid: 512950eb1eb660148aa1e222bb92d7b2, type: 3}
   - {fileID: 5875324440232792942, guid: aa3c1a06e66c7c446b18645507c7269c, type: 3}
   - {fileID: 5875324440232792942, guid: a2ff5fefe43ebec4396a869ea75c639f, type: 3}
   spawnStart: 3
   spawnEnd: 17
-  timerToNextSpawn: 2
   _maxSpawnPoint: {fileID: 194146920}
   _minSpawnPoint: {fileID: 363614676}
   minVerticalPoint: 0
