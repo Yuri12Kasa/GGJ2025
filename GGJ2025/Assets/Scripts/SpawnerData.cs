@@ -3,8 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SpawnerData", menuName = "Scriptable Objects/SpawnerData")]
 public class SpawnerData : ScriptableObject
 {
-    [Range(2,5)]
-    public int playersNumber = 2;
+    [Range(1,6)]
+    public int playerNumber = 1;
     public float timerToNextSpawn = 5;
     public Obstacle[] obstaclesToSpawn;
     public float spawnStart = 3;
