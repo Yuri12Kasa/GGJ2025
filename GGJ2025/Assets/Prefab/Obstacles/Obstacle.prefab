@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2985807875367735663}
   - component: {fileID: 5875324440232792942}
   m_Layer: 0
-  m_Name: Obstacle 1
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeDestroyed: 1
   trackModifier:
-  - time: 5
+  - time: 1
     pitch: 1.305
-    clip: {fileID: 8300000, guid: 3386a5f2d95679845bb6d78479771d3e, type: 3}
+    clip: {fileID: 8300000, guid: d3d91688d950f3e499ac80ffead01016, type: 3}
   speed: 5
