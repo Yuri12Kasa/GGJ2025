@@ -20,9 +20,9 @@ public class GameManagerMauro : MonoBehaviour
     
     //Player
     [HideInInspector] public int playersNumber = 2;
-    private int _currentPlayer = 1;
+    private int _currentPlayer;
     
-    public int GetCurrentPlayer() => _currentPlayer-1;
+    public int GetCurrentPlayer() => _currentPlayer;
     
     private void Awake()
     {
@@ -63,18 +63,25 @@ public class GameManagerMauro : MonoBehaviour
 
     public string GetSentence()
     {
-        return _activeSentence.sentences[_currentPlayer - 1];
+        return _activeSentence.sentences[_currentPlayer];
     }
 
     public void NextPlayer()
     {
         var nextPlayer = _currentPlayer + 1;
         
+        Debug.Log($"Players Numbers: {playersNumber}");
+        Debug.Log($"Current player: {_currentPlayer}");
+        Debug.Log($"Next player: {nextPlayer}");
+        
         if(nextPlayer > playersNumber)
             return;
-        
-        if(nextPlayer == playersNumber)
+
+        if (nextPlayer == playersNumber)
+        {
             SceneController.Instance.NextScene();
+            return;
+        }
         
         _currentPlayer++;
         SceneController.Instance.PreviousScene();
