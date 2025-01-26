@@ -1,6 +1,5 @@
 using System.IO;
 using System.Linq;
-using HuggingFace.API;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -118,18 +117,21 @@ public class Microphone : MonoBehaviour
 
     #region SpeechToText
 
-    private void SendRecording() {
-        HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
-            text.color = Color.white;
-            text.text = response;
-        }, error => {
-            text.color = Color.red;
-            text.text = error;
-        });
-    }
-    private byte[] EncodeAsWAV(float[] samples, int frequency, int channels) {
-        using (var memoryStream = new MemoryStream(44 + samples.Length * 2)) {
-            using (var writer = new BinaryWriter(memoryStream)) {
+    //private void SendRecording() {
+    //    HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
+    //        text.color = Color.white;
+    //        text.text = response;
+    //    }, error => {
+    //        text.color = Color.red;
+    //        text.text = error;
+    //    });
+    //}
+    private byte[] EncodeAsWAV(float[] samples, int frequency, int channels)
+    {
+        using (var memoryStream = new MemoryStream(44 + samples.Length * 2))
+        {
+            using (var writer = new BinaryWriter(memoryStream))
+            {
                 writer.Write("RIFF".ToCharArray());
                 writer.Write(36 + samples.Length * 2);
                 writer.Write("WAVE".ToCharArray());
@@ -143,8 +145,9 @@ public class Microphone : MonoBehaviour
                 writer.Write((ushort)16);
                 writer.Write("data".ToCharArray());
                 writer.Write(samples.Length * 2);
-    
-                foreach (var sample in samples) {
+
+                foreach (var sample in samples)
+                {
                     writer.Write((short)(sample * short.MaxValue));
                 }
             }
@@ -153,7 +156,7 @@ public class Microphone : MonoBehaviour
     }
 
     #endregion
-    
+
     void CheckText()
     {
         if (playersSpeech[0].Equals(playersSpeech.Last()))

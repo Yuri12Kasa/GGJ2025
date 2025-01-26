@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using HuggingFace.API;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -35,26 +34,27 @@ public class SpeechToText : MonoBehaviour
         _recordedClip = UnityEngine.Microphone.Start(UnityEngine.Microphone.devices[0], false, lengthSec, sampleRate);
      
     }
-    private void SendRecording() {
-        HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
-            text.color = Color.white;
-            text.text = response;
-            if (_firstRecord)
-            {
-                playersSpeech[0] = response;
-                _firstRecord = false;
-            }
-            else
-            {
-                playersSpeech[1] = response;
+
+    //private void SendRecording() {
+    //    HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
+    //        text.color = Color.white;
+    //        text.text = response;
+    //        if (_firstRecord)
+    //        {
+    //            playersSpeech[0] = response;
+    //            _firstRecord = false;
+    //        }
+    //        else
+    //        {
+    //            playersSpeech[1] = response;
                
                
-            }
-        }, error => {
-            text.color = Color.red;
-            text.text = error;
-        });
-    }
+    //        }
+    //    }, error => {
+    //        text.color = Color.red;
+    //        text.text = error;
+    //    });
+    //}
     
     public void StopRecording()
     {
@@ -65,7 +65,7 @@ public class SpeechToText : MonoBehaviour
         bytes = EncodeAsWAV(samples, _recordedClip.frequency, _recordedClip.channels);
         _isRecording = false; 
         File.WriteAllBytes(Application.dataPath + filePath, bytes);
-        SendRecording();
+        //SendRecording();
     }
     public void PlayRecordedClip()
     {
