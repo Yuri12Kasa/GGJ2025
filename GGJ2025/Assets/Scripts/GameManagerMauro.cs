@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,9 +8,6 @@ using Random = UnityEngine.Random;
 public class GameManagerMauro : MonoBehaviour
 {
     public static GameManagerMauro Instance;
-    
-    public float mainSceneTime = 20f;
-    private float _time;
 
     public Track track;
     
@@ -20,9 +18,9 @@ public class GameManagerMauro : MonoBehaviour
     
     //Player
     [HideInInspector] public int playersNumber = 2;
-    private int _currentPlayer = 1;
+    private int _currentPlayer;
     
-    public int GetCurrentPlayer() => _currentPlayer-1;
+    public int GetCurrentPlayer() => _currentPlayer;
     
     private void Awake()
     {
@@ -63,7 +61,7 @@ public class GameManagerMauro : MonoBehaviour
 
     public string GetSentence()
     {
-        return _activeSentence.sentences[_currentPlayer - 1];
+        return _activeSentence.sentences[_currentPlayer];
     }
 
     public void NextPlayer()
@@ -72,9 +70,12 @@ public class GameManagerMauro : MonoBehaviour
         
         if(nextPlayer > playersNumber)
             return;
-        
-        if(nextPlayer == playersNumber)
+
+        if (nextPlayer == playersNumber)
+        {
             SceneController.Instance.NextScene();
+            return;
+        }
         
         _currentPlayer++;
         SceneController.Instance.PreviousScene();
@@ -119,5 +120,10 @@ public class GameManagerMauro : MonoBehaviour
         sentence = sentence.ToLower();
         
         return sentence == correctSentence;
+    }
+
+    public void SetTrackClip(AudioClip clip)
+    {
+        track.clip = clip;
     }
 }
