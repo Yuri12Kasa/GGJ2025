@@ -45,10 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 028a9225c5248564aa8fbd4e719bc8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recTime:
+  - 3
+  - 5
+  - 8
+  - 11
+  - 14
+  - 17
+  timerText: {fileID: 0}
+  OnStartRecording:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEndRecording:
+    m_PersistentCalls:
+      m_Calls: []
   text: {fileID: 0}
   sampleRate: 44100
   lengthSec: 3599
   playersSpeech: []
+  _isRecording: 0
 --- !u!82 &5275213521791272498
 AudioSource:
   m_ObjectHideFlags: 0
