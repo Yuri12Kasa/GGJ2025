@@ -10,6 +10,7 @@ public class MoveFromLoudness : MonoBehaviour
     public float loudnessSensibility = 100;
     public float threshold = 0.1f;
 
+    private float _loudness;
     private Rigidbody _rigidbody;
 
     private void Awake()
@@ -38,12 +39,12 @@ public class MoveFromLoudness : MonoBehaviour
 
     private float GetLoudnessFromMicrophone()
     {
-        float loudness = detector.GetLoudnessFromMicrophone() * loudnessSensibility;
+        _loudness = detector.GetLoudnessFromMicrophone() * loudnessSensibility;
 
-        if (loudness < threshold)
-            loudness = 0;
+        if (_loudness < threshold)
+            _loudness = 0;
             
-        return loudness;
+        return _loudness;
     }
 
     public void AddModifier(List<TrackModifier> trackModifier)
@@ -52,16 +53,22 @@ public class MoveFromLoudness : MonoBehaviour
     }
     private void Move()
     {
-        float loudness = GetLoudnessFromMicrophone();
-        if (loudness == 0)
+        _loudness = GetLoudnessFromMicrophone();
+        if (_loudness == 0)
         {
             float yVelocity = _rigidbody.linearVelocity.y;
             _rigidbody.linearVelocity = new Vector3(_rigidbody.linearVelocity.x, Mathf.Clamp(yVelocity, -maxSpeed, maxSpeed), _rigidbody.linearVelocity.z);
         }
         else
         {
-            float yVelocity = _rigidbody.linearVelocity.y + (moveSpeed * Time.deltaTime * loudness * loudnessSensibility);
+            float yVelocity = _rigidbody.linearVelocity.y + (moveSpeed * Time.deltaTime * _loudness * loudnessSensibility);
             _rigidbody.linearVelocity = new Vector3(_rigidbody.linearVelocity.x, Mathf.Clamp(yVelocity, -maxSpeed, maxSpeed), _rigidbody.linearVelocity.z);
         }
+    }
+
+    public float GetNormalizedLoudness()
+    {
+        Debug.Log(moveSpeed * Time.deltaTime * _loudness * loudnessSensibility);
+        return GetLoudnessFromMicrophone() / 0.33f;
     }
 }
