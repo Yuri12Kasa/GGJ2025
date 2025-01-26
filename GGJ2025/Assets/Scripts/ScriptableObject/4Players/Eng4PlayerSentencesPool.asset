@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389863baf1d0e914892e83e031e965b2, type: 3}
+  m_Name: Eng4PlayerSentencesPool
+  m_EditorClassIdentifier: 
+  players: 4
+  sentences:
+  - {fileID: 11400000, guid: a67110eb9f789d949bfb3268cd2c3b64, type: 2}
+  - {fileID: 11400000, guid: 3fc582c21deb0cd468eddc81bfb22b11, type: 2}
+  - {fileID: 11400000, guid: 2fb4f7eee9577a348b65c66e93e42f58, type: 2}
+  - {fileID: 11400000, guid: 6fb3145145699f04fb5fe0ea69887146, type: 2}
