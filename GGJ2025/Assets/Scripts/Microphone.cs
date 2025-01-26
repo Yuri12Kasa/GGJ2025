@@ -7,7 +7,10 @@ using UnityEngine.Events;
 
 public class Microphone : MonoBehaviour
 {
+    public float[] recTime = new float[6];
 
+    public TMP_Text timerText;
+    
     public UnityEvent OnStartRecording;
     public UnityEvent OnEndRecording;
     
@@ -25,6 +28,9 @@ public class Microphone : MonoBehaviour
     private byte[] bytes;
     [SerializeField] private bool _isRecording;
     private bool _firstRecord;
+
+    private float _currentRecTime;
+    private float _timer;
     
     private void Awake()
     {
@@ -38,6 +44,8 @@ public class Microphone : MonoBehaviour
         {
             _playersNum = GameManagerMauro.Instance.playersNumber;
             playersSpeech = new string[2];
+            _currentRecTime = recTime[GameManagerMauro.Instance.GetCurrentPlayer()];
+            timerText.text = _currentRecTime.ToString("0");
         }
         else
         {
@@ -54,6 +62,11 @@ public class Microphone : MonoBehaviour
 
     private void Update()
     {
+        if (_isRecording)
+        {
+            CheckTimer();
+        }
+        
         if (_recordedClip != null)
             return;
         
@@ -76,6 +89,19 @@ public class Microphone : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             PlayRecordedClip();
+        }
+    }
+
+    private void CheckTimer()
+    {
+        if (_timer > _currentRecTime)
+        {
+            StopRecording();
+        }
+        else
+        {
+            _timer += Time.deltaTime;
+            timerText.text = (_currentRecTime - _timer).ToString("0");
         }
     }
 
