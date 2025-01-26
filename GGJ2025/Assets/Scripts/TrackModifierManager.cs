@@ -31,7 +31,7 @@ public class TrackModifierManager : MonoBehaviour
             return;
         _trackIsPlaying = true;
         currentTrack = GameManagerMauro.Instance.track;
-        _maxTime = currentTrack.clip.length;
+        _maxTime = currentTrack.clip.length / 1000;
         masterAudioSource.clip = currentTrack.clip;
         currentTrack.SortList();
         masterAudioSource.outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 1); 
