@@ -15,14 +15,6 @@ public class TrackModifierManager : MonoBehaviour
 
     private int _modifierIndex;
 
-    private void Start()
-    {
-        if (GameManagerMauro.Instance)
-        {
-            currentTrack = GameManagerMauro.Instance.track;
-        }
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -38,6 +30,7 @@ public class TrackModifierManager : MonoBehaviour
         if (_trackIsPlaying)
             return;
         _trackIsPlaying = true;
+        currentTrack = GameManagerMauro.Instance.track;
         _maxTime = currentTrack.clip.length;
         masterAudioSource.clip = currentTrack.clip;
         currentTrack.SortList();

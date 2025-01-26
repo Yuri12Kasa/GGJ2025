@@ -27,9 +27,9 @@ public class SpawnManager : MonoBehaviour
         {
             spawnStart = 0;
         }
-        if (spawnEnd > GameManagerMauro.Instance.mainSceneTime)
+        if (spawnEnd > TimeManager.Instance.SceneTime)
         {
-            spawnEnd = GameManagerMauro.Instance.mainSceneTime;
+            spawnEnd = TimeManager.Instance.SceneTime;
         }
     }
     private void Update()

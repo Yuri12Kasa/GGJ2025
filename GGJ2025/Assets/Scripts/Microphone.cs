@@ -1,3 +1,4 @@
+using System.Collections;
 using System.IO;
 using System.Linq;
 using TMPro;
@@ -44,6 +45,13 @@ public class Microphone : MonoBehaviour
         }
     }
 
+    private IEnumerator BlankRecord()
+    {
+        StartRecording();
+        yield return new WaitForSeconds(0.5f);
+        StopRecording();
+    }
+
     private void Update()
     {
         if (_recordedClip != null)
@@ -73,8 +81,8 @@ public class Microphone : MonoBehaviour
 
     public void StartRecording()
     {
-        if (_recordedClip != null)
-            return;
+        // if (_recordedClip != null)
+        //     return;
         OnStartRecording.Invoke();
         _isRecording = true;
         _recordedClip = UnityEngine.Microphone.Start(UnityEngine.Microphone.devices[0], false, lengthSec, sampleRate);
@@ -83,16 +91,16 @@ public class Microphone : MonoBehaviour
     public void StopRecording()
     {
         OnEndRecording.Invoke();
-        var position = UnityEngine.Microphone.GetPosition(null);
-        UnityEngine.Microphone.End(null);
+        var position = UnityEngine.Microphone.GetPosition(UnityEngine.Microphone.devices[0]);
+        UnityEngine.Microphone.End(UnityEngine.Microphone.devices[0]);
         var samples = new float[position * _recordedClip.channels];
-        _recordedClip.GetData(samples, sampleRate);
+        _recordedClip.GetData(samples, 0);
         bytes = EncodeAsWAV(samples, _recordedClip.frequency, _recordedClip.channels);
         _isRecording = false; 
         //SendRecording();
         if (GameManagerMauro.Instance != null)
         {
-            GameManagerMauro.Instance.track.clip = _recordedClip;
+            GameManagerMauro.Instance.SetTrackClip(_recordedClip);
             if (GameManagerMauro.Instance.playersNumber == GameManagerMauro.Instance.GetCurrentPlayer())
             {
                 CheckText();
