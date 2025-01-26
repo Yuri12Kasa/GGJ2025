@@ -29,7 +29,7 @@ public class SpawnManager : MonoBehaviour
         {
             foreach (SpawnerData data in spawnersData)
             {
-                if (data.playersNumber == GameManagerMauro.Instance.playersNumber)
+                if (data.playerNumber == GameManagerMauro.Instance.GetCurrentPlayer() + 1)
                 {
                     _timerToNextSpawn = data.timerToNextSpawn;
                     _obstaclesToSpawn = data.obstaclesToSpawn.ToList();
