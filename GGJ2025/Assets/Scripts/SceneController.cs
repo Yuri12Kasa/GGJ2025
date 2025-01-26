@@ -14,7 +14,7 @@ public class SceneController : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
     
@@ -28,9 +28,14 @@ public class SceneController : MonoBehaviour
 
     public void PreviousScene()
     {
-        if (SceneManager.GetActiveScene().buildIndex - 1 >= SceneManager.sceneCountInBuildSettings)
+        if (SceneManager.GetActiveScene().buildIndex - 1 >= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         } 
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
