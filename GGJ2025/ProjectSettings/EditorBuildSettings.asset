@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EndScene.unity
     guid: 32d0e237ac79a27468051958f3c984cd
+  - enabled: 0
+    path: Assets/Scenes/RecordingDesigner.unity
+    guid: 52dbac31b1e72494da812a80de37f4d9
+  - enabled: 0
+    path: Assets/Scenes/GameLoopDesign.unity
+    guid: f6d47861d83d20a4e8f952281773ebbe
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
