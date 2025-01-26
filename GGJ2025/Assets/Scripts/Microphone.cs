@@ -1,6 +1,6 @@
+using System.Collections;
 using System.IO;
 using System.Linq;
-
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -45,6 +45,13 @@ public class Microphone : MonoBehaviour
         }
     }
 
+    private IEnumerator BlankRecord()
+    {
+        StartRecording();
+        yield return new WaitForSeconds(0.5f);
+        StopRecording();
+    }
+
     private void Update()
     {
         if (_recordedClip != null)
@@ -74,8 +81,8 @@ public class Microphone : MonoBehaviour
 
     public void StartRecording()
     {
-        if (_recordedClip != null)
-            return;
+        // if (_recordedClip != null)
+        //     return;
         OnStartRecording.Invoke();
         _isRecording = true;
         _recordedClip = UnityEngine.Microphone.Start(UnityEngine.Microphone.devices[0], false, lengthSec, sampleRate);
@@ -84,16 +91,16 @@ public class Microphone : MonoBehaviour
     public void StopRecording()
     {
         OnEndRecording.Invoke();
-        var position = UnityEngine.Microphone.GetPosition(null);
-        UnityEngine.Microphone.End(null);
+        var position = UnityEngine.Microphone.GetPosition(UnityEngine.Microphone.devices[0]);
+        UnityEngine.Microphone.End(UnityEngine.Microphone.devices[0]);
         var samples = new float[position * _recordedClip.channels];
-        _recordedClip.GetData(samples, sampleRate);
-        //sbytes = EncodeAsWAV(samples, _recordedClip.frequency, _recordedClip.channels);
+        _recordedClip.GetData(samples, 0);
+        bytes = EncodeAsWAV(samples, _recordedClip.frequency, _recordedClip.channels);
         _isRecording = false; 
         //SendRecording();
         if (GameManagerMauro.Instance != null)
         {
-            GameManagerMauro.Instance.track.clip = _recordedClip;
+            GameManagerMauro.Instance.SetTrackClip(_recordedClip);
             if (GameManagerMauro.Instance.playersNumber == GameManagerMauro.Instance.GetCurrentPlayer())
             {
                 CheckText();
@@ -116,20 +123,23 @@ public class Microphone : MonoBehaviour
         }
     }
 
-   /* #region SpeechToText
+    #region SpeechToText
 
-    private void SendRecording() {
-        HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
-            text.color = Color.white;
-            text.text = response;
-        }, error => {
-            text.color = Color.red;
-            text.text = error;
-        });
-    }
-    private byte[] EncodeAsWAV(float[] samples, int frequency, int channels) {
-        using (var memoryStream = new MemoryStream(44 + samples.Length * 2)) {
-            using (var writer = new BinaryWriter(memoryStream)) {
+    //private void SendRecording() {
+    //    HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
+    //        text.color = Color.white;
+    //        text.text = response;
+    //    }, error => {
+    //        text.color = Color.red;
+    //        text.text = error;
+    //    });
+    //}
+    private byte[] EncodeAsWAV(float[] samples, int frequency, int channels)
+    {
+        using (var memoryStream = new MemoryStream(44 + samples.Length * 2))
+        {
+            using (var writer = new BinaryWriter(memoryStream))
+            {
                 writer.Write("RIFF".ToCharArray());
                 writer.Write(36 + samples.Length * 2);
                 writer.Write("WAVE".ToCharArray());
@@ -143,8 +153,9 @@ public class Microphone : MonoBehaviour
                 writer.Write((ushort)16);
                 writer.Write("data".ToCharArray());
                 writer.Write(samples.Length * 2);
-    
-                foreach (var sample in samples) {
+
+                foreach (var sample in samples)
+                {
                     writer.Write((short)(sample * short.MaxValue));
                 }
             }
@@ -153,8 +164,7 @@ public class Microphone : MonoBehaviour
     }
 
     #endregion
-   */
-    
+
     void CheckText()
     {
         if (playersSpeech[0].Equals(playersSpeech.Last()))

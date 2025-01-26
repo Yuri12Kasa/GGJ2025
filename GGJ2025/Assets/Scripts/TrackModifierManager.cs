@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 using Yuri;
 
 public class TrackModifierManager : MonoBehaviour
 {
+    public UnityEvent OnEndTrack;
     public AudioSource masterAudioSource;
     public AudioSource trackModifierAudioSource;
     public Track currentTrack;
@@ -27,7 +30,8 @@ public class TrackModifierManager : MonoBehaviour
         if (_trackIsPlaying)
             return;
         _trackIsPlaying = true;
-        _maxTime = currentTrack.clip.length;
+        currentTrack = GameManagerMauro.Instance.track;
+        _maxTime = currentTrack.clip.length / 1000;
         masterAudioSource.clip = currentTrack.clip;
         currentTrack.SortList();
         masterAudioSource.outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 1); 
@@ -44,6 +48,8 @@ public class TrackModifierManager : MonoBehaviour
             _trackIsPlaying = false;
             _timer = 0;
             _modifierIndex = 0;
+            OnEndTrack?.Invoke();
+            enabled = false;
         }
         else
         {

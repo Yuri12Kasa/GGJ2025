@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Yuri;
 
 public class MoveFromLoudness : MonoBehaviour
 {
@@ -35,9 +34,6 @@ public class MoveFromLoudness : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-            
-        float yVelocity = Mathf.Clamp(_rigidbody.linearVelocity.y * Time.fixedTime * moveSpeed, -maxSpeed, maxSpeed);
-        _rigidbody.linearVelocity += Vector3.up * yVelocity;
     }
 
     private float GetLoudnessFromMicrophone()
@@ -58,9 +54,14 @@ public class MoveFromLoudness : MonoBehaviour
     {
         float loudness = GetLoudnessFromMicrophone();
         if (loudness == 0)
-            return;
-
-        float yVelocity = Mathf.Clamp(loudness * moveSpeed * Time.fixedTime, 0, maxSpeed);
-        _rigidbody.linearVelocity = new Vector3(_rigidbody.linearVelocity.x, yVelocity, _rigidbody.linearVelocity.z);
+        {
+            float yVelocity = _rigidbody.linearVelocity.y;
+            _rigidbody.linearVelocity = new Vector3(_rigidbody.linearVelocity.x, Mathf.Clamp(yVelocity, -maxSpeed, maxSpeed), _rigidbody.linearVelocity.z);
+        }
+        else
+        {
+            float yVelocity = _rigidbody.linearVelocity.y + (moveSpeed * Time.deltaTime * loudness * loudnessSensibility);
+            _rigidbody.linearVelocity = new Vector3(_rigidbody.linearVelocity.x, Mathf.Clamp(yVelocity, -maxSpeed, maxSpeed), _rigidbody.linearVelocity.z);
+        }
     }
 }

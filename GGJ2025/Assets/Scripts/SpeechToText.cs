@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-//using HuggingFace.API;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -36,29 +35,26 @@ public class SpeechToText : MonoBehaviour
      
     }
 
-    /*
-    private void SendRecording() {
-        HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
-            text.color = Color.white;
-            text.text = response;
-            if (_firstRecord)
-            {
-                playersSpeech[0] = response;
-                _firstRecord = false;
-            }
-            else
-            {
-                playersSpeech[1] = response;
+    //private void SendRecording() {
+    //    HuggingFaceAPI.AutomaticSpeechRecognition(bytes, response => {
+    //        text.color = Color.white;
+    //        text.text = response;
+    //        if (_firstRecord)
+    //        {
+    //            playersSpeech[0] = response;
+    //            _firstRecord = false;
+    //        }
+    //        else
+    //        {
+    //            playersSpeech[1] = response;
                
                
-            }
-        }, error => {
-            text.color = Color.red;
-            text.text = error;
-        });
-    }
-
-    */
+    //        }
+    //    }, error => {
+    //        text.color = Color.red;
+    //        text.text = error;
+    //    });
+    //}
     
     public void StopRecording()
     {

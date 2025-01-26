@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+   [Header("Obstacle Modifier")]
+   public bool canBeDestroyed = true;
    public List<TrackModifier> trackModifier;
    public float speed;
    private void Update()
@@ -14,7 +16,7 @@ public class Obstacle : MonoBehaviour
    {
       transform.position += Vector3.left * (speed * Time.deltaTime);
    }
-
+   
    private void OnTriggerEnter(Collider other)
    {
       if (other.CompareTag("Bubble"))
@@ -25,7 +27,8 @@ public class Obstacle : MonoBehaviour
          }
          var bubble = other.GetComponent<MoveFromLoudness>();
          bubble.AddModifier(trackModifier);
-         Destroy(gameObject);
+         if(canBeDestroyed)
+            Destroy(gameObject);
       }
    }
 }
