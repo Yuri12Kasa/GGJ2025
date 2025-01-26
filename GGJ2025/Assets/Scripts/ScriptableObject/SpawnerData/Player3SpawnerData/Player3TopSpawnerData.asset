@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6873c6cca3fa88b4fa6d60ce703d60f5, type: 3}
   m_Name: Player3TopSpawnerData
   m_EditorClassIdentifier: 
-  playerNumber: 1
+  playerNumber: 6
   timerToNextSpawn: 5
   obstaclesToSpawn:
   - {fileID: 5875324440232792942, guid: aa3c1a06e66c7c446b18645507c7269c, type: 3}
