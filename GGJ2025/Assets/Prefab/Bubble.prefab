@@ -223,7 +223,7 @@ MonoBehaviour:
   maxSpeed: 3
   moveSpeed: 0.2
   detector: {fileID: 0}
-  loudnessSensibility: 142
+  loudnessSensibility: 100
   threshold: 0.1
 --- !u!54 &5414706246214479984
 Rigidbody:

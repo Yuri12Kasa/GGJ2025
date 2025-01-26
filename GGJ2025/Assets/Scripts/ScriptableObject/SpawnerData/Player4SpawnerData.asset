@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6873c6cca3fa88b4fa6d60ce703d60f5, type: 3}
   m_Name: Player4SpawnerData
   m_EditorClassIdentifier: 
-  playersNumber: 4
-  timerToNextSpawn: 3.5
+  playerNumber: 4
+  timerToNextSpawn: 7
   obstaclesToSpawn:
   - {fileID: 5875324440232792942, guid: 512950eb1eb660148aa1e222bb92d7b2, type: 3}
   - {fileID: 5875324440232792942, guid: aa3c1a06e66c7c446b18645507c7269c, type: 3}
