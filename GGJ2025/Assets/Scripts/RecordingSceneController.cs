@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class RecordingSceneController : MonoBehaviour
 {
+    public GameObject pressToListen;
+    public GameObject pressToRecord;
     public static event Action OnClipEnd;
     
     [SerializeField] private Button _playAudioButton;
@@ -23,6 +26,8 @@ public class RecordingSceneController : MonoBehaviour
         _currentPlayer = GameManagerMauro.Instance.GetCurrentPlayer();
 
         _playAudioButton.gameObject.SetActive(_currentPlayer != 0);
+        pressToListen.SetActive(_currentPlayer != 0);
+        pressToRecord.SetActive(_currentPlayer == 0);
 
         if (GameManagerMauro.Instance.track.clip != null)
         {
@@ -45,5 +50,7 @@ public class RecordingSceneController : MonoBehaviour
     private void HideButton()
     {
         _playAudioButton.gameObject.SetActive(false);
+        pressToListen.SetActive(false);
+        pressToRecord.SetActive(false);
     }
 }
