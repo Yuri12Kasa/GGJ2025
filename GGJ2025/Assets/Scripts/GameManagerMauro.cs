@@ -89,4 +89,9 @@ public class GameManagerMauro : MonoBehaviour
     {
         track.clip = clip;
     }
+
+    public void ClearTrackModifiers()
+    {
+        track.trackModifiers.Clear();
+    }
 }

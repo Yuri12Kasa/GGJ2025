@@ -44,9 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c906301db56ab4a9fbfcc9f3b61032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainSceneTime: 20
+  track:
+    clip: {fileID: 0}
+    trackModifiers: []
   sentencesPool:
   - {fileID: 11400000, guid: 84f4884aacd069d4b8b048d1138e31f6, type: 2}
   - {fileID: 11400000, guid: a86aea26cc032ed4285e56f1604bae79, type: 2}
   - {fileID: 11400000, guid: c885d4d8badacd34e98f6e9bf863c0fe, type: 2}
+  - {fileID: 11400000, guid: 8e46683d07dfd09448dd4d99e953a6a1, type: 2}
+  - {fileID: 11400000, guid: bbfb233fbdd9a0645a03a2f87c6da68e, type: 2}
   playersNumber: 2

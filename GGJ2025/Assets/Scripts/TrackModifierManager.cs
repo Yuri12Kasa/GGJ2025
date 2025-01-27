@@ -45,6 +45,7 @@ public class TrackModifierManager : MonoBehaviour
             return;
         if (_timer > _maxTime)
         {
+            GameManagerMauro.Instance.ClearTrackModifiers();
             _trackIsPlaying = false;
             _timer = 0;
             _modifierIndex = 0;
